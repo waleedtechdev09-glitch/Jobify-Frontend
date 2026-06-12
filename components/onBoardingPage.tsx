@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 const OnBoardingPage = () => {
   return (
@@ -89,7 +90,9 @@ const OnBoardingPage = () => {
             type="button"
             className="w-full md:w-auto mt-6 md:mt-10 px-8 py-3.5 md:py-4 bg-gradient-to-r from-[#25a873] to-[#209666] hover:from-[#1f8f61] hover:to-[#1a7d54] text-white font-bold text-base md:text-lg rounded-2xl transition-all duration-300 transform active:scale-[0.98] flex items-center justify-center gap-3 shadow-[0_10px_25px_rgba(37,168,115,0.25)] hover:shadow-[0_12px_30px_rgba(37,168,115,0.35)] group relative overflow-hidden"
           >
-            <span>Lets’ Start</span>
+            <span className="cursor-pointer">
+              <Link href="/pages/register">Lets’ Start</Link>
+            </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
