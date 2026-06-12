@@ -40,78 +40,136 @@ const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-[#f2faf7] via-[#ecf7f4] to-[#e1f2ee] flex items-center justify-center font-sans antialiased selection:bg-[#25a873]/20 selection:text-[#25a873] p-3 sm:p-6 md:p-10 relative overflow-x-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute top-[-10%] right-[-10%] w-[300px] sm:w-[500px] h-[300px] sm:h-[500px] rounded-full bg-[#25a873]/5 blur-[80px] sm:blur-[120px] pointer-events-none -z-10" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] rounded-full bg-[#20b2aa]/5 blur-[100px] sm:blur-[150px] pointer-events-none -z-10" />
+    <div className="min-h-screen w-full bg-[#f8faf9] flex items-stretch font-sans antialiased selection:bg-[#25a873]/20 selection:text-[#25a873] overflow-x-hidden">
+      {/* LEFT SIDE: Branding & Features Panel (Visible on Desktop only) */}
+      <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-[#1b7e56] via-[#25a873] to-[#209666] relative p-12 flex-col justify-between overflow-hidden">
+        {/* Abstract Background Overlays */}
+        <div className="absolute top-[-20%] right-[-20%] w-[600px] h-[600px] rounded-full bg-white/5 blur-[100px] pointer-events-none" />
+        <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] rounded-full bg-black/10 blur-[80px] pointer-events-none" />
 
-      {/* Main Signup Card */}
-      {/* Responsive Width: Step 3 par grid display hone ki wajah se max-w badh kar md:max-w-3xl ho jata hai */}
-      <div
-        className={`w-full bg-white/95 backdrop-blur-sm rounded-3xl shadow-xl border border-white/50 overflow-hidden transition-all duration-300 ${
-          userType && signupMethod ? "max-w-md md:max-w-3xl" : "max-w-md"
-        }`}
-      >
-        {/* Header Section */}
-        <div className="relative px-5 sm:px-8 pt-8 pb-4 border-b border-gray-100/80">
-          {/* Back Button */}
-          {(userType || signupMethod) && (
-            <button
-              onClick={goBack}
-              type="button"
-              className="absolute left-5 sm:left-8 top-8 text-[#626262] hover:text-[#25a873] transition-colors flex items-center gap-1.5 z-10 group"
-            >
-              <svg
-                className="w-5 h-5 transform group-hover:-translate-x-0.5 transition-transform"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2.5}
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                />
-              </svg>
-              <span className="text-sm font-semibold hidden sm:inline">
-                Back
-              </span>
-            </button>
-          )}
-
-          <div className="flex justify-center mb-3">
-            <div className="w-11 h-11 bg-gradient-to-br from-[#25a873] to-[#1b7e56] rounded-2xl flex items-center justify-center shadow-md">
-              <span className="text-white font-bold text-xl">J</span>
-            </div>
+        {/* Top Branding Header */}
+        <div className="relative flex items-center gap-3 z-10">
+          <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center shadow-md">
+            <span className="text-[#25a873] font-black text-xl">J</span>
           </div>
-          <h1 className="text-xl sm:text-2xl md:text-3xl font-extrabold text-center text-[#0c0c0c] tracking-tight">
-            Create an Account
-          </h1>
-          <p className="text-center text-[#626262] text-xs sm:text-sm mt-1 max-w-[30ch] sm:max-w-none mx-auto">
-            Join our community of professionals and recruiters
-          </p>
+          <span className="text-white font-bold text-lg tracking-wide">
+            Jobify
+          </span>
         </div>
 
-        {/* Content Area */}
-        <div className="p-5 sm:p-8">
+        {/* Middle Value Proposition Dynamic Content */}
+        <div className="relative z-10 max-w-md space-y-6 my-auto">
+          <h2 className="text-4xl xl:text-5xl font-black text-white leading-tight tracking-tight">
+            {!userType
+              ? "Discover the right path for your career journey."
+              : userType === "seeker"
+                ? "Your dream job is just a few clicks away."
+                : "Hire the absolute best talent globally."}
+          </h2>
+          <p className="text-white/80 text-base xl:text-lg font-medium leading-relaxed">
+            {!userType
+              ? "Join millions of professionals and top companies worldwide to find jobs, post requirements, and build strong pipelines."
+              : userType === "seeker"
+                ? "Get access to exclusive tech positions, direct communication with HR heads, and automated profile matching."
+                : "Post openings effortlessly, filter candidates with precision pipelines, and schedule seamless interviews."}
+          </p>
+
+          {/* Quick Metrics */}
+          <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">
+            <div>
+              <p className="text-3xl font-extrabold text-white">120k+</p>
+              <p className="text-xs text-white/70 font-medium uppercase tracking-wider mt-1">
+                Active Users
+              </p>
+            </div>
+            <div>
+              <p className="text-3xl font-extrabold text-white">450+</p>
+              <p className="text-xs text-white/70 font-medium uppercase tracking-wider mt-1">
+                Top Companies
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Footer Credits */}
+        <div className="relative z-10 text-white/60 text-xs font-medium">
+          &copy; 2026 JobPortal Inc. All rights reserved.
+        </div>
+      </div>
+
+      {/* RIGHT SIDE: Dynamic Interactive Form Panel (Centered on mobile, beautifully expanded on web) */}
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12 md:p-16 bg-white relative">
+        {/* Back Arrow Button Floating Wrapper */}
+        {(userType || signupMethod) && (
+          <button
+            onClick={goBack}
+            type="button"
+            className="absolute  left-6 top-6 lg:left-12 lg:top-12 text-[#626262] hover:text-[#25a873] transition-colors flex items-center gap-2 z-20 group font-semibold text-sm"
+          >
+            <svg
+              className="w-5 h-5 transform group-hover:-translate-x-1 transition-transform"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2.5}
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+              />
+            </svg>
+            <span>Back</span>
+          </button>
+        )}
+
+        {/* Inner Responsive Card Container */}
+        <div
+          className={`w-full transition-all duration-300 mx-auto ${
+            userType && signupMethod ? "max-w-xl" : "max-w-md"
+          }`}
+        >
+          {/* Mobile Only Header Logo */}
+          <div className="flex flex-col items-center mb-8 lg:hidden">
+            <div className="w-12 h-12 bg-gradient-to-br from-[#25a873] to-[#1b7e56] rounded-2xl flex items-center justify-center shadow-md mb-3">
+              <span className="text-white font-bold text-xl">J</span>
+            </div>
+            <h1 className="text-2xl font-black text-[#0c0c0c]">
+              Create an Account
+            </h1>
+            <p className="text-[#626262] text-sm mt-1">
+              Join our professional community
+            </p>
+          </div>
+
+          {/* Web Header Display */}
+          <div className="hidden lg:block mb-8">
+            <h1 className="text-3xl font-black text-[#0c0c0c] tracking-tight">
+              Get Started Safely
+            </h1>
+            <p className="text-[#626262] text-sm mt-2">
+              Setup your institutional profile credentials to sync pipelines.
+            </p>
+          </div>
+
+          {/* CONTENT DISPATCHER BASED ON STEPS */}
+
           {/* Step 1: Choose User Type */}
           {!userType && !signupMethod && (
-            <div className="space-y-5 animate-fadeIn">
-              <h2 className="text-base sm:text-lg font-bold text-[#0c0c0c] text-center">
-                I want to sign up as a
+            <div className="space-y-6 animate-fadeIn">
+              <h2 className="text-lg font-medium text-[#0c0c0c]">
+                I want to sign up as a...
               </h2>
-              <div className="grid grid-cols-1 gap-3.5">
+              <div className="grid grid-cols-1 gap-4">
                 {/* Seeker Button */}
                 <button
                   onClick={() => setUserType("seeker")}
-                  className="group relative p-5 bg-white border border-gray-200 rounded-2xl hover:border-[#25a873] hover:shadow-md transition-all duration-300 text-left w-full overflow-hidden"
+                  className="group relative p-5 bg-white border border-gray-200 rounded-2xl hover:border-[#25a873] hover:shadow-lg hover:shadow-[#25a873]/5 transition-all duration-300 text-left w-full overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#25a873]/0 to-[#1b7e56]/0 group-hover:from-[#25a873]/5 group-hover:to-[#1b7e56]/5 transition-all duration-300" />
-                  <div className="relative flex items-start gap-4">
-                    <div className="w-11 h-11 bg-[#25a873]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-[#25a873]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                       <svg
-                        className="w-5 h-5 text-[#25a873]"
+                        className="w-6 h-6 text-[#25a873]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -124,12 +182,12 @@ const SignupPage = () => {
                         />
                       </svg>
                     </div>
-                    <div>
-                      <h3 className="text-base font-bold text-[#0c0c0c] mb-0.5">
+                    <div className="flex-1">
+                      <h3 className="text-base font-bold text-[#0c0c0c] group-hover:text-[#25a873] transition-colors">
                         Job Seeker
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#626262] leading-snug">
-                        Find your dream job and connect with top companies
+                      <p className="text-sm text-[#626262] mt-0.5 leading-snug">
+                        Find roles tailored to your exact tech stacks.
                       </p>
                     </div>
                   </div>
@@ -138,13 +196,12 @@ const SignupPage = () => {
                 {/* Recruiter Button */}
                 <button
                   onClick={() => setUserType("recruiter")}
-                  className="group relative p-5 bg-white border border-gray-200 rounded-2xl hover:border-[#25a873] hover:shadow-md transition-all duration-300 text-left w-full overflow-hidden"
+                  className="group relative p-5 bg-white border border-gray-200 rounded-2xl hover:border-[#25a873] hover:shadow-lg hover:shadow-[#25a873]/5 transition-all duration-300 text-left w-full overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-[#25a873]/0 to-[#1b7e56]/0 group-hover:from-[#25a873]/5 group-hover:to-[#1b7e56]/5 transition-all duration-300" />
-                  <div className="relative flex items-start gap-4">
-                    <div className="w-11 h-11 bg-[#25a873]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-[#25a873]/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform">
                       <svg
-                        className="w-5 h-5 text-[#25a873]"
+                        className="w-6 h-6 text-[#25a873]"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -157,24 +214,24 @@ const SignupPage = () => {
                         />
                       </svg>
                     </div>
-                    <div>
-                      <h3 className="text-base font-bold text-[#0c0c0c] mb-0.5">
-                        Recruiter
+                    <div className="flex-1">
+                      <h3 className="text-base font-bold text-[#0c0c0c] group-hover:text-[#25a873] transition-colors">
+                        Recruiter / Employer
                       </h3>
-                      <p className="text-xs sm:text-sm text-[#626262] leading-snug">
-                        Find the best talent for your company
+                      <p className="text-sm text-[#626262] mt-0.5 leading-snug">
+                        Publish open slots and connect with engineers directly.
                       </p>
                     </div>
                   </div>
                 </button>
               </div>
 
-              <div className="text-center pt-2">
-                <p className="text-xs sm:text-sm text-[#626262]">
+              <div className="text-center pt-4 border-t border-gray-100">
+                <p className="text-sm text-[#626262]">
                   Already have an account?{" "}
                   <Link
-                    href="/login"
-                    className="text-[#25a873] font-bold hover:underline"
+                    href="/pages/login"
+                    className="text-[#25a873] font-bold hover:underline ml-1"
                   >
                     Sign in
                   </Link>
@@ -185,24 +242,25 @@ const SignupPage = () => {
 
           {/* Step 2: Choose Signup Method */}
           {userType && !signupMethod && (
-            <div className="space-y-5 animate-fadeIn">
-              <div className="text-right">
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+            <div className="space-y-6 animate-fadeIn">
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg font-bold text-[#0c0c0c]">
+                  Choose dynamic validation
+                </h2>
+                <span className="text-[10px] font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded-md uppercase tracking-wider">
                   Step 1 of 2
                 </span>
               </div>
-              <h2 className="text-base sm:text-lg font-bold text-[#0c0c0c] text-center">
-                Choose how to sign up
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Email Option */}
                 <button
                   onClick={() => setSignupMethod("email")}
-                  className="p-5 bg-white border border-gray-200 rounded-2xl hover:border-[#25a873] text-center hover:shadow-md transition-all duration-300 group w-full"
+                  className="p-6 bg-white border border-gray-200 rounded-2xl hover:border-[#25a873] text-center hover:shadow-lg transition-all duration-300 group w-full"
                 >
-                  <div className="w-12 h-12 bg-[#25a873]/10 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:scale-105 transition-transform">
+                  <div className="w-12 h-12 bg-[#25a873]/10 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <svg
-                      className="w-5 h-5 text-[#25a873]"
+                      className="w-6 h-6 text-[#25a873]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -215,22 +273,22 @@ const SignupPage = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="font-bold text-[#0c0c0c] text-sm sm:text-base">
+                  <h3 className="font-bold text-[#0c0c0c] text-base">
                     Email Address
                   </h3>
-                  <p className="text-xs text-[#626262] mt-0.5">
-                    Sign up with your email
+                  <p className="text-xs text-[#626262] mt-1">
+                    Instant magic link credentials
                   </p>
                 </button>
 
                 {/* Phone Option */}
                 <button
                   onClick={() => setSignupMethod("phone")}
-                  className="p-5 bg-white border border-gray-200 rounded-2xl hover:border-[#25a873] text-center hover:shadow-md transition-all duration-300 group w-full"
+                  className="p-6 bg-white border border-gray-200 rounded-2xl hover:border-[#25a873] text-center hover:shadow-lg transition-all duration-300 group w-full"
                 >
-                  <div className="w-12 h-12 bg-[#25a873]/10 rounded-full flex items-center justify-center mx-auto mb-2 group-hover:scale-105 transition-transform">
+                  <div className="w-12 h-12 bg-[#25a873]/10 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                     <svg
-                      className="w-5 h-5 text-[#25a873]"
+                      className="w-6 h-6 text-[#25a873]"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -243,37 +301,35 @@ const SignupPage = () => {
                       />
                     </svg>
                   </div>
-                  <h3 className="font-bold text-[#0c0c0c] text-sm sm:text-base">
+                  <h3 className="font-bold text-[#0c0c0c] text-base">
                     Phone Number
                   </h3>
-                  <p className="text-xs text-[#626262] mt-0.5">
-                    Sign up with your phone
+                  <p className="text-xs text-[#626262] mt-1">
+                    One-time OTP gateway authorization
                   </p>
                 </button>
               </div>
             </div>
           )}
 
-          {/* Step 3: Signup Form */}
+          {/* Step 3: Expanded Dynamic Signup Form */}
           {userType && signupMethod && (
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-4 md:space-y-5 animate-fadeIn"
-            >
-              <div className="text-right">
-                <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">
+            <form onSubmit={handleSubmit} className="space-y-5 animate-fadeIn">
+              <div className="flex justify-between items-center mb-2">
+                <h2 className="text-lg font-bold text-[#0c0c0c] capitalize">
+                  {userType} Credentials
+                </h2>
+                <span className="text-[10px] font-bold text-gray-400 bg-gray-100 px-2 py-1 rounded-md uppercase tracking-wider">
                   Step 2 of 2
                 </span>
               </div>
 
-              {/* Grid Wrapper: Desktop screen par dynamic split row banata hai */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+              {/* Form Grid Structure */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {/* Full Name Field */}
-                <div>
-                  <label className="block text-xs sm:text-sm font-bold text-[#0c0c0c] mb-1.5">
-                    {userType === "seeker"
-                      ? "Full Name"
-                      : "Contact Person Name"}
+                <div className="sm:col-span-1">
+                  <label className="block text-xs font-bold text-[#0c0c0c] uppercase tracking-wider mb-2">
+                    {userType === "seeker" ? "Full Name" : "Contact Name"}
                   </label>
                   <input
                     type="text"
@@ -281,18 +337,18 @@ const SignupPage = () => {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3.5 py-2.5 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-2 focus:ring-[#25a873]/10 transition-all outline-none text-sm"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-4 focus:ring-[#25a873]/5 transition-all outline-none text-sm bg-gray-50/50 focus:bg-white"
                     placeholder={
-                      userType === "seeker" ? "John Doe" : "John Smith"
+                      userType === "seeker" ? "e.g. Waleed" : "e.g. John Smith"
                     }
                   />
                 </div>
 
-                {/* Company Name Field (Recruiter Dynamic Component) */}
+                {/* Company Name Field */}
                 {userType === "recruiter" && (
-                  <div>
-                    <label className="block text-xs sm:text-sm font-bold text-[#0c0c0c] mb-1.5">
-                      Company Name
+                  <div className="sm:col-span-1">
+                    <label className="block text-xs font-bold text-[#0c0c0c] uppercase tracking-wider mb-2">
+                      Company Structure
                     </label>
                     <input
                       type="text"
@@ -300,20 +356,22 @@ const SignupPage = () => {
                       value={formData.companyName}
                       onChange={handleInputChange}
                       required
-                      className="w-full px-3.5 py-2.5 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-2 focus:ring-[#25a873]/10 transition-all outline-none text-sm"
-                      placeholder="Google, Microsoft, etc."
+                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-4 focus:ring-[#25a873]/5 transition-all outline-none text-sm bg-gray-50/50 focus:bg-white"
+                      placeholder="e.g. CorpTech Studio"
                     />
                   </div>
                 )}
 
-                {/* Email or Phone Dynamic Field Container */}
+                {/* Contact Logic Wrapper */}
                 <div
-                  className={userType === "seeker" ? "md:col-span-2" : "w-full"}
+                  className={
+                    userType === "seeker" ? "sm:col-span-2" : "sm:col-span-2"
+                  }
                 >
                   {signupMethod === "email" ? (
                     <div>
-                      <label className="block text-xs sm:text-sm font-bold text-[#0c0c0c] mb-1.5">
-                        Email Address
+                      <label className="block text-xs font-bold text-[#0c0c0c] uppercase tracking-wider mb-2">
+                        Institutional Email Address
                       </label>
                       <input
                         type="email"
@@ -321,21 +379,20 @@ const SignupPage = () => {
                         value={formData.email}
                         onChange={handleInputChange}
                         required
-                        className="w-full px-3.5 py-2.5 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-2 focus:ring-[#25a873]/10 transition-all outline-none text-sm"
-                        placeholder="you@example.com"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-4 focus:ring-[#25a873]/5 transition-all outline-none text-sm bg-gray-50/50 focus:bg-white"
+                        placeholder="developer@example.com"
                       />
                     </div>
                   ) : (
                     <div>
-                      <label className="block text-xs sm:text-sm font-bold text-[#0c0c0c] mb-1.5">
-                        Phone Number
+                      <label className="block text-xs font-bold text-[#0c0c0c] uppercase tracking-wider mb-2">
+                        Active Phone Gateway
                       </label>
-                      <div className="flex gap-1.5">
-                        <select className="px-2 py-2.5 border border-gray-200 rounded-xl focus:border-[#25a873] outline-none bg-white text-xs sm:text-sm font-medium">
+                      <div className="flex gap-2">
+                        <select className="px-3 py-3 border border-gray-200 rounded-xl focus:border-[#25a873] outline-none bg-gray-50 text-sm font-semibold">
+                          <option>+92</option>
                           <option>+1</option>
                           <option>+44</option>
-                          <option>+92</option>
-                          <option>+91</option>
                         </select>
                         <input
                           type="tel"
@@ -343,18 +400,18 @@ const SignupPage = () => {
                           value={formData.phone}
                           onChange={handleInputChange}
                           required
-                          className="flex-1 min-w-0 px-3.5 py-2.5 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-2 focus:ring-[#25a873]/10 transition-all outline-none text-sm"
-                          placeholder="1234567890"
+                          className="flex-1 px-4 py-3 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-4 focus:ring-[#25a873]/5 transition-all outline-none text-sm bg-gray-50/50 focus:bg-white"
+                          placeholder="3001234567"
                         />
                       </div>
                     </div>
                   )}
                 </div>
 
-                {/* Password Field */}
-                <div>
-                  <label className="block text-xs sm:text-sm font-bold text-[#0c0c0c] mb-1.5">
-                    Password
+                {/* Password Fields */}
+                <div className="sm:col-span-1">
+                  <label className="block text-xs font-bold text-[#0c0c0c] uppercase tracking-wider mb-2">
+                    Security Key
                   </label>
                   <input
                     type="password"
@@ -362,15 +419,14 @@ const SignupPage = () => {
                     value={formData.password}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3.5 py-2.5 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-2 focus:ring-[#25a873]/10 transition-all outline-none text-sm"
-                    placeholder="Create password"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-4 focus:ring-[#25a873]/5 transition-all outline-none text-sm bg-gray-50/50 focus:bg-white"
+                    placeholder="••••••••"
                   />
                 </div>
 
-                {/* Confirm Password Field */}
-                <div>
-                  <label className="block text-xs sm:text-sm font-bold text-[#0c0c0c] mb-1.5">
-                    Confirm Password
+                <div className="sm:col-span-1">
+                  <label className="block text-xs font-bold text-[#0c0c0c] uppercase tracking-wider mb-2">
+                    Verify Security Key
                   </label>
                   <input
                     type="password"
@@ -378,69 +434,67 @@ const SignupPage = () => {
                     value={formData.confirmPassword}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-3.5 py-2.5 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-2 focus:ring-[#25a873]/10 transition-all outline-none text-sm"
-                    placeholder="Confirm password"
+                    className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:border-[#25a873] focus:ring-4 focus:ring-[#25a873]/5 transition-all outline-none text-sm bg-gray-50/50 focus:bg-white"
+                    placeholder="••••••••"
                   />
                 </div>
               </div>
 
-              {/* Checkbox, Action Button and Footers: Centered spans on desktop via full layout properties */}
-              <div className="md:col-span-2 space-y-4 pt-1">
-                {/* Terms and Conditions */}
-                <div className="flex items-start gap-2.5">
+              {/* Terms and Submits */}
+              <div className="space-y-4 pt-2">
+                <div className="flex items-start gap-3">
                   <input
                     type="checkbox"
                     name="agreeToTerms"
                     checked={formData.agreeToTerms}
                     onChange={handleInputChange}
                     required
-                    className="mt-0.5 w-4 h-4 text-[#25a873] border-gray-300 rounded focus:ring-[#25a873] flex-shrink-0"
+                    className="mt-1 w-4 h-4 text-[#25a873] border-gray-300 rounded focus:ring-[#25a873]"
                   />
-                  <label className="text-xs sm:text-sm text-[#626262] leading-tight">
-                    I agree to the{" "}
+                  <label className="text-xs text-[#626262] leading-normal">
+                    I acknowledge and agree to the platform's{" "}
                     <a
                       href="#"
-                      className="text-[#25a873] font-semibold hover:underline"
+                      className="text-[#25a873] font-bold hover:underline"
                     >
                       Terms of Service
                     </a>{" "}
-                    and{" "}
+                    and default automated machine-learning{" "}
                     <a
                       href="#"
-                      className="text-[#25a873] font-semibold hover:underline"
+                      className="text-[#25a873] font-bold hover:underline"
                     >
-                      Privacy Policy
+                      Privacy Architecture
                     </a>
+                    .
                   </label>
                 </div>
 
-                {/* Submit Action */}
                 <button
                   type="submit"
-                  className="w-full py-3 bg-gradient-to-r from-[#25a873] to-[#209666] hover:from-[#1f8f61] hover:to-[#1a7d54] text-white font-bold text-sm sm:text-base rounded-xl transition-all duration-300 transform active:scale-[0.99] shadow-md hover:shadow-lg"
+                  className="w-full py-3.5 bg-gradient-to-r from-[#25a873] to-[#209666] hover:from-[#1f8f61] hover:to-[#1a7d54] text-white font-bold text-sm rounded-xl transition-all duration-300 shadow-md hover:shadow-xl hover:shadow-[#25a873]/10 transform active:scale-[0.99]"
                 >
-                  Create Account
+                  Complete Onboarding
                 </button>
 
-                {/* Decorative Divider */}
+                {/* Third-Party Authentication Integrations */}
                 <div className="relative py-2">
                   <div className="absolute inset-0 flex items-center">
                     <div className="w-full border-t border-gray-100"></div>
                   </div>
                   <div className="relative flex justify-center text-xs">
-                    <span className="px-3 bg-white text-[#626262] font-medium">
-                      Or sign up with
+                    <span className="px-3 bg-white text-[#626262] font-medium tracking-wide uppercase text-[10px]">
+                      Or accelerate via
                     </span>
                   </div>
                 </div>
 
-                {/* Social Buttons */}
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     type="button"
-                    className="flex items-center justify-center gap-2 px-3 py-2 border border-gray-200 rounded-xl hover:bg-gray-50/80 transition-colors w-full"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-semibold text-gray-700"
                   >
-                    <svg className="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24">
+                    <svg className="w-4 h-4" viewBox="0 0 24 24">
                       <path
                         fill="#4285F4"
                         d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -458,34 +512,29 @@ const SignupPage = () => {
                         d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                       />
                     </svg>
-                    <span className="text-xs sm:text-sm font-semibold text-gray-700">
-                      Google
-                    </span>
+                    <span>Google</span>
                   </button>
                   <button
                     type="button"
-                    className="flex items-center justify-center gap-2 px-3 py-2 border border-gray-200 rounded-xl hover:bg-gray-50/80 transition-colors w-full"
+                    className="flex items-center justify-center gap-2 px-4 py-2.5 border border-gray-200 rounded-xl hover:bg-gray-50 transition-colors text-sm font-semibold text-gray-700"
                   >
                     <svg
-                      className="w-4 h-4 text-[#1877F2] flex-shrink-0"
+                      className="w-4 h-4 text-[#1877F2]"
                       fill="currentColor"
                       viewBox="0 0 24 24"
                     >
                       <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                     </svg>
-                    <span className="text-xs sm:text-sm font-semibold text-gray-700">
-                      Facebook
-                    </span>
+                    <span>Facebook</span>
                   </button>
                 </div>
 
-                {/* Footer Link */}
                 <div className="text-center pt-2">
-                  <p className="text-xs sm:text-sm text-[#626262]">
-                    Already have an account?{" "}
+                  <p className="text-sm text-[#626262]">
+                    Already onboard?{" "}
                     <Link
                       href="/login"
-                      className="text-[#25a873] font-bold hover:underline"
+                      className="text-[#25a873] font-bold hover:underline ml-1"
                     >
                       Sign in
                     </Link>
